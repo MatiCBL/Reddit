@@ -22,7 +22,7 @@ const Navbar: React.FC = () => {
       >
         <Image src="/images/redditFace.svg" height="30px" alt="reddit logo" />
         <Image
-          src="images/redditText.svg"
+          src="/images/redditText.svg"
           height="46px"
           display={{ base: "none", md: "unset" }}
           alt="reddit logo text"
