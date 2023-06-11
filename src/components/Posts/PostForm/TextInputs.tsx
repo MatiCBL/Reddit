@@ -17,6 +17,7 @@ const TextInputs: React.FC<TextInputsProps> = ({
   textInputs,
   onChange,
   loading,
+  handleCreatePost,
 }) => {
   return (
     <Stack spacing={3} width="100%">
@@ -37,6 +38,8 @@ const TextInputs: React.FC<TextInputsProps> = ({
       />
       <Textarea
         name="body"
+        value={textInputs.body}
+        onChange={onChange}
         fontSize="10pt"
         borderRadius={4}
         height="100px"
@@ -55,7 +58,7 @@ const TextInputs: React.FC<TextInputsProps> = ({
           padding="0px 30px"
           disabled={!textInputs.title}
           isLoading={loading}
-          onClick={() => {}}
+          onClick={handleCreatePost}
         >
           Post
         </Button>
