@@ -1,12 +1,13 @@
 import { doc, getDoc } from "firebase/firestore";
 import { GetServerSidePropsContext } from "next";
 import React from "react";
-import { firestore } from "../../../firebase/clientApp";
-import { Community } from "../../../atoms/communitiesAtom";
 import safeJsonStringify from "safe-json-stringify";
-import NotFound from "../../../components/Community/NotFound";
+import { Community } from "../../../atoms/communitiesAtom";
+import CreatePostLink from "../../../components/Community/CreatePostLink";
 import Header from "../../../components/Community/Header";
+import NotFound from "../../../components/Community/NotFound";
 import PageContent from "../../../components/Layout/PageContent";
+import { firestore } from "../../../firebase/clientApp";
 
 type CommunityPageProps = {
   communityData: Community;
@@ -22,7 +23,7 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ communityData }) => {
       <Header communityData={communityData} />
       <PageContent>
         <>
-          <div>LHS</div>
+          <CreatePostLink />
         </>
         <>
           <div>RHS</div>
