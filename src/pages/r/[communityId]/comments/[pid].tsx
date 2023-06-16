@@ -9,6 +9,8 @@ import { doc, getDoc } from "firebase/firestore";
 import { Post } from "../../../../atoms/postsAtom";
 import About from "../../../../components/Community/About";
 import useCommunityData from "../../../../hooks/useCommunityData";
+import Comments from "../../../../components/Posts/Comments/Comments";
+import { User } from "firebase/auth";
 
 const PostPage: React.FC = () => {
   const [user] = useAuthState(auth);
@@ -55,7 +57,11 @@ const PostPage: React.FC = () => {
             userIsCreator={user?.uid === postStateValue.selectedPost?.creatorId}
           />
         )}
-        {/* Comments */}
+        <Comments
+          user={user as User}
+          selectedPost={postStateValue.selectedPost}
+          communityId={postStateValue.selectedPost?.communityId as string}
+        />
       </>
       <>
         {communityStateValue.currentCommunity && (
