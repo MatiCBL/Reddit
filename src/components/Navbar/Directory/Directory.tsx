@@ -34,7 +34,13 @@ const UserMenu: React.FC = () => {
         >
           <Flex align="center">
             {directoryState.selectedMenuItem.imageURL ? (
-              <Image alt="community image" />
+              <Image
+                src={directoryState.selectedMenuItem.imageURL}
+                borderRadius="full"
+                boxSize="24px"
+                mr={2}
+                alt="community image"
+              />
             ) : (
               <Icon
                 fontSize={24}
