@@ -1,14 +1,4 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import PageContent from "../components/Layout/PageContent";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, firestore } from "../firebase/clientApp";
-import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
-import { communityState } from "../atoms/communitiesAtom";
-import { FaRegClosedCaptioning } from "react-icons/fa";
+import { Stack } from "@chakra-ui/react";
 import {
   collection,
   getDocs,
@@ -17,13 +7,20 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import usePosts from "../hooks/usePosts";
+import type { NextPage } from "next";
+import { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Post, PostVote } from "../atoms/postsAtom";
-import PostLoader from "../components/Posts/PostLoader";
-import { Stack } from "@chakra-ui/react";
-import PostItem from "../components/Posts/PostItem";
 import CreatePostLink from "../components/Community/CreatePostLink";
+import PersonalHome from "../components/Community/PersonalHome";
+import Premium from "../components/Community/Premium";
+import Recommendations from "../components/Community/Recommendations";
+import PageContent from "../components/Layout/PageContent";
+import PostItem from "../components/Posts/PostItem";
+import PostLoader from "../components/Posts/PostLoader";
+import { auth, firestore } from "../firebase/clientApp";
 import useCommunityData from "../hooks/useCommunityData";
+import usePosts from "../hooks/usePosts";
 
 const Home: NextPage = () => {
   const [user, loadingUser] = useAuthState(auth);
@@ -161,7 +158,11 @@ const Home: NextPage = () => {
           </Stack>
         )}
       </>
-      <>Recommendations</>
+      <Stack spacing={5}>
+        <Recommendations />
+        <Premium />
+        <PersonalHome />
+      </Stack>
     </PageContent>
   );
 };
