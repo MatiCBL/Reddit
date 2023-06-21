@@ -137,7 +137,7 @@ const Comments: React.FC<CommentsProps> = ({
       }));
       setComments(comments as Comment[]);
     } catch (error) {
-      console.log("getPostCommets error", error);
+      console.log("getPostComments error", error);
     }
     setFetchLoading(false);
   };
