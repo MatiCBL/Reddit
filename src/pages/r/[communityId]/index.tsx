@@ -54,6 +54,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       "communities",
       context.query.communityId as string
     );
+
     const communityDoc = await getDoc(communityDocRef);
 
     return {

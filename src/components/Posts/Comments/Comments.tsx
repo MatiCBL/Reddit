@@ -7,10 +7,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { User } from "firebase/auth";
-import React, { useEffect, useState } from "react";
-import { Post, postState } from "../../../atoms/postsAtom";
-import CommentInput from "./CommentInput";
-import { firestore } from "../../../firebase/clientApp";
 import {
   Timestamp,
   collection,
@@ -23,7 +19,11 @@ import {
   where,
   writeBatch,
 } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
+import { Post, postState } from "../../../atoms/postsAtom";
+import { firestore } from "../../../firebase/clientApp";
+import CommentInput from "./CommentInput";
 import CommentItem, { Comment } from "./CommentItem";
 
 type CommentsProps = {
@@ -70,7 +70,7 @@ const Comments: React.FC<CommentsProps> = ({
       // update post numberOfComments +1
       const postDocRef = doc(firestore, "posts", selectedPost?.id!);
       batch.update(postDocRef, {
-        numberOfCOmments: increment(1),
+        numberOfComments: increment(1),
       });
 
       await batch.commit();
@@ -137,14 +137,14 @@ const Comments: React.FC<CommentsProps> = ({
       }));
       setComments(comments as Comment[]);
     } catch (error) {
-      console.log("getPostCommets error", error);
+      console.log("getPostComments error", error);
     }
     setFetchLoading(false);
   };
 
   useEffect(() => {
-    if (!selectedPost) return;
     getPostComments();
+    if (!selectedPost) return;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPost]);
 
