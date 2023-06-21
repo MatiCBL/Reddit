@@ -7,10 +7,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { User } from "firebase/auth";
-import React, { useEffect, useState } from "react";
-import { Post, postState } from "../../../atoms/postsAtom";
-import CommentInput from "./CommentInput";
-import { firestore } from "../../../firebase/clientApp";
 import {
   Timestamp,
   collection,
@@ -23,7 +19,11 @@ import {
   where,
   writeBatch,
 } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
+import { Post, postState } from "../../../atoms/postsAtom";
+import { firestore } from "../../../firebase/clientApp";
+import CommentInput from "./CommentInput";
 import CommentItem, { Comment } from "./CommentItem";
 
 type CommentsProps = {
@@ -143,8 +143,8 @@ const Comments: React.FC<CommentsProps> = ({
   };
 
   useEffect(() => {
-    if (!selectedPost) return;
     getPostComments();
+    if (!selectedPost) return;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPost]);
 
